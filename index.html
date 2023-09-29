@@ -2,98 +2,187 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do-Ist</title>
-
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Optional: Link to your CSS file -->
+    <link rel="stylesheet" type="text/css" href="todo.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+      img {
+        width: 70px;
+        height: 70px;
+        align-items: center;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: powderblue;
+      }
+      .box {
+        position: relative;
+        width: 450px;
+        height: 550px;
+        border-radius: 30px;
+        border-style: dashed;
+        background: rgb(147, 253, 253);
+        padding: 30px 50px;
+        box-shadow: 25px 25px 75px rgb(0, 20, 50),
+          10px 10px 70px rgb(0, 100, 256), inset 5px 5px 100px rgb(0, 100, 256),
+          inset 5px 5px 30px rgb(0, 100, 256),
+          inset -5px -5px 15px rgb(147, 253, 253);
+      }
+      h2 {
+        width: 100%;
+        font-weight: 600;
+        text-align: center;
+        color: #0051ff;
+        font-size: 1.75em;
+        margin-bottom: 10px;
+      }
+      #inputBx {
+        position: relative;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 15px 20px;
+        border-radius: 30px;
+        font-size: 1em;
+        box-shadow: 5px 5px 7px rgb(0, 100, 256),
+          inset 2px 2px 5px rgb(0, 100, 256),
+          inset -3px -3px 5px rgb(0, 100, 256);
+      }
+      .box li {
+        position: relative;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        background: #2f363e;
+        margin: 15px 0;
+        padding: 10px 10px 10px 45px;
+        min-height: 45px;
+        cursor: pointer;
+        border-radius: 22.5px;
+        color: #fff;
+        box-shadow: 5px 5px 7px rgb(0, 100, 256),
+          inset 2px 2px 5px rgb(0, 100, 256),
+          inset -3px -3px 5px rgb(0, 100, 256);
+      }
+      .box li i {
+        position: absolute;
+        right: -40px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ff2c74;
+        border-radius: 50%;
+        box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+          inset 2px 2px 5px rgba(255, 255, 255, 0.25),
+          inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+      }
+      .box li i::before {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 2px;
+        background: #fff;
+        transform: rotate(45deg);
+      }
+      .box li i::after {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 2px;
+        background: #fff;
+        transform: rotate(-45deg);
+      }
+      .box li::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        width: 30px;
+        height: 30px;
+        background: rgb(255, 187, 0);
+        border-radius: 50%;
+      }
+      .box li.done {
+        background: #607d8b;
+      }
+      .box li.done:after {
+        content: "";
+        position: absolute;
+        left: 16px;
+        width: 12px;
+        height: 6px;
+        border-left: 2px solid green;
+        border-bottom: solid green;
+        transform: rotate(315deg);
+      }
+      #list {
+        position: relative;
+        margin-top: 20px;
+        height: 350px;
+        overflow-y: auto;
+        scroll-padding-left: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #fff;
+      }
+      input:hover {
+        background-color: #0051ff;
+        border: black;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
   </head>
-  <style>
-    body {
-      font-family: cursive;
-      margin: 0;
-      padding: 0;
-      background-color: #f2f2f2;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-      margin-top: 4cm;
-      padding: 20px;
-      background-color: #87ceeb;
-      border-radius: 25px;
-      border-style: dashed;
-      font-weight: bold;
-      box-shadow: 5px 5px 5px rgb(4, 72, 256);
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid #094bff;
-    }
-
-    input[type="text"] {
-      width: 150px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 25px;
-    }
-  </style>
-  <body style="background-color: rgb(167, 199, 231)">
-    <div style="text-align: center" class="container">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/1950/1950715.png"
-        width="50"
-        height="60"
-      />
-      <h1 style="text-align: center">To Doist ✅</h1>
-      <input
-        style="text-align: center"
-        type="text"
-        id="taskInput"
-        placeholder="Enter a new task"
-      />
-      <ul id="taskList"></ul>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h2>To Doist ✅</h2>
+        <input
+          type="text"
+          placeholder="Enter your task here....."
+          id="inputBx"
+        />
+        <u1 id="list"></u1>
+      </div>
     </div>
     <script>
-      const taskInput = document.getElementById("taskInput");
-      const taskList = document.getElementById("taskList");
-
-      taskInput.addEventListener("keyup", function (event) {
-        if (event.key === "Enter" && taskInput.value.trim() !== "") {
-          addTask(taskInput.value.trim());
-          taskInput.value = "";
+      let inputBx = document.querySelector("#inputBx");
+      let list = document.querySelector("#list");
+      inputBx.addEventListener("keyup", function (event) {
+        if (event.key == "Enter") {
+          addItem(this.value);
+          this.value = "";
         }
       });
-
-      function addTask(taskText) {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <span>${taskText}</span>
-          <button class="done">Done</button>
-          <button class="remove">Remove</button>
-          <button class="Deadline">Add Deadline</button>
-      `;
-        const doneButton = li.querySelector(".done");
-        doneButton.addEventListener("click", function () {
-          taskList.removeChild(li);
+      let addItem = (inputBx) => {
+        let listItem = document.createElement("li");
+        listItem.innerHTML = `${inputBx}<i></i>`;
+        listItem.addEventListener("click", function () {
+          this.classList.toggle("done");
         });
-        const removeButton = li.querySelector(".remove");
-        removeButton.addEventListener("click", function () {
-          taskList.removeChild(li);
+        listItem.querySelector("i").addEventListener("click", function () {
+          listItem.remove();
         });
-
-        taskList.appendChild(li);
-      }
+        list.appendChild(listItem);
+      };
     </script>
   </body>
 </html>
