@@ -39,6 +39,31 @@
           inset 5px 5px 30px rgb(0, 100, 256),
           inset -5px -5px 15px rgb(147, 253, 253);
       }
+      @keyframes example {
+        0% {
+          background-color: red;
+        }
+        25% {
+          background-color: orange;
+        }
+        50% {
+          background-color: yellow;
+        }
+        90% {
+          background-color: green;
+        }
+        100% {
+          background-color: #ff2c74;
+        }
+      }
+      .box {
+        position: relative;
+        background-color: red;
+        animation-name: example;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        align-items: center;
+      }
       h2 {
         width: 100%;
         font-weight: 600;
@@ -59,6 +84,7 @@
           inset 2px 2px 5px rgb(0, 100, 256),
           inset -3px -3px 5px rgb(0, 100, 256);
       }
+
       .box li {
         position: relative;
         width: 90%;
